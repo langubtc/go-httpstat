@@ -25,6 +25,7 @@ type Result struct {
 	Connect       time.Duration
 	Pretransfer   time.Duration
 	StartTransfer time.Duration
+	TotalTime     time.Duration
 	total         time.Duration
 
 	t0 time.Time

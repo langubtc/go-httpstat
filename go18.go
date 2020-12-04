@@ -22,6 +22,7 @@ func (r *Result) End(t time.Time) {
 
 	r.contentTransfer = r.transferDone.Sub(r.transferStart)
 	r.total = r.transferDone.Sub(r.dnsStart)
+	r.TotalTime = r.transferDone.Sub(r.dnsStart)
 }
 
 // ContentTransfer returns the duration of content transfer time.
@@ -42,7 +43,7 @@ func withClientTrace(ctx context.Context, r *Result) context.Context {
 	return httptrace.WithClientTrace(ctx, &httptrace.ClientTrace{
 		DNSStart: func(i httptrace.DNSStartInfo) {
 			r.dnsStart = time.Now()
-			r.t0 = r.dnsStart
+
 		},
 
 		DNSDone: func(i httptrace.DNSDoneInfo) {
